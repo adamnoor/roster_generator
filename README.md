@@ -16,7 +16,7 @@ Next enter a budget of 50000 (standard for draft kings).
 
 Next enter 200 (this is telling the program to return only rosters that have a budget of 50000, 49000 and 48000)
 
-The program will begin to calculate how many rosters are valid and after it is complete you should generate a rosters.csv file that contains 1276030 unique rosters from the players.csv file that fit the parameters of a budget of 50000 and only not using up to 200 of that budget.
+The program will begin to calculate how many rosters are valid and after it is complete you should generate a rosters.csv file that contains 1,276,030 unique rosters from the players.csv file that fit the parameters of a budget of 50000 and only not using up to 200 of that budget.
 
 Now that you have a rosters.csv file you can run the main.py file again only this time select 2 to filter rosters.
 
@@ -30,7 +30,7 @@ You are now prompted to enter a name.  Enter Mike Davis (another name from the p
 
 Now when prompted if you'd like to filter another name press r (this runs the filter).
 
-You should generate 28049 unique rosters that have both Aaron Rogers and Mike Davis on them.  The file generated is filter<Timestamp>.csv which allows for you to generate multiple filtered rosters and since they are pulled from your orignial rosters.csv file you know they have a budget of either 50000, 49000, 48000.
+You should generate 28,049 unique rosters that have both Aaron Rogers and Mike Davis on them.  The file generated is filter<Timestamp>.csv which allows for you to generate multiple filtered rosters and since they are pulled from your orignial rosters.csv file you know they have a budget of either 50000, 49000, 48000.
 
 
 
