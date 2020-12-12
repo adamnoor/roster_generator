@@ -1,5 +1,7 @@
 # roster_generator
 
+Try the new main_with_ui.py version of roster_generator!  The UI makes it easier to use!
+
 This program takes in a list of players, prices and positions, the budget price as well as the acceptable amount of money to be unused to generate all the possible standard fantasy football rosters consisting of one qb, two rbs, three wrs, one te, one def and one flex (either an rb, wr or te).
 
 The players.csv, as well as the main.py file must be present to run the program.
