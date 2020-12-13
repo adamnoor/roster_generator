@@ -79,10 +79,7 @@ def read_players():
 		    player: Player = Player(line[0], int(line[1]), line[2], count)
 		    count+=1
 
-		    if not all_players:
-			    all_players.insert(0, player)
-		    else:
-			    all_players.append(player)
+		    all_players.append(player)
 
 def user_input():
 	global budget
@@ -96,63 +93,30 @@ def user_input():
 def create_player_arrays():
 	for player in all_players:
 		if player.position == "QB":
-		    if not quarter_backs:
-			    quarter_backs.insert(0, player)
-		    else:
-			    quarter_backs.append(player)
+		    quarter_backs.append(player)
 		elif player.position == "RB":
-			if not running_backs:
-				running_backs.insert(0, player)
-			else:
-				running_backs.append(player)
-			if not flex_players:
-				flex_players.insert(0, player)
-			else:
-				flex_players.append(player)
+			running_backs.append(player)
+			flex_players.append(player)
 		elif player.position == "WR":
-			if not wide_receivers:
-				wide_receivers.insert(0, player)
-			else:
-				wide_receivers.append(player)
-				
-			if not flex_players:
-				flex_players.insert(0, player)
-			else:
-				flex_players.append(player)
+			wide_receivers.append(player)
+			flex_players.append(player)
 		elif player.position == "TE":
-			if not tight_ends:
-				tight_ends.insert(0, player)
-			else:
-				tight_ends.append(player)
-				
-			if not flex_players:
-				flex_players.insert(0, player)
-			else:
-				flex_players.append(player)
+			tight_ends.append(player)
+			flex_players.append(player)
 		elif player.position == "DF":
-			if not defenses:
-				defenses.insert(0, player)
-			else:
-				defenses.append(player)
+			defenses.append(player)
 
 
 def set_running_backs():
 	combo = combinations(running_backs, 2)
 	for p in list(combo):
-
-		if not rb_combos:
-			rb_combos.insert(0, p)
-		else:
-			rb_combos.append(p)
+		rb_combos.append(p)
 
 
 def set_wide_receivers():
 	combo = combinations(wide_receivers, 3)
 	for p in list(combo):
-		if not wr_combos:
-			wr_combos.insert(0, p)
-		else:
-			wr_combos.append(p)
+		wr_combos.append(p)
 	print("Done 1 of 6.  The number of players is " + str(len(all_players)))
 
 
@@ -163,10 +127,7 @@ def combine_wr_rb():
 		q = 0
 		while q < len(wr_combos):
 			current_array = [rb_combos[p][0], rb_combos[p][1], wr_combos[q][0], wr_combos[q][1], wr_combos[q][2]]
-			if not rb_wr_combos:
-				rb_wr_combos.insert(0, current_array)
-			else:
-				rb_wr_combos.append(current_array)
+			rb_wr_combos.append(current_array)
 			q += 1
 	print("Done 2 of 6.  The number of RB/WR combos is " + str(len(rb_wr_combos)))
 
@@ -179,10 +140,7 @@ def combine_wr_rb_te():
 		while q < len(rb_wr_combos):
 			current_array = [tight_ends[p], rb_wr_combos[q][0], rb_wr_combos[q][1], rb_wr_combos[q][2],
 					 rb_wr_combos[q][3], rb_wr_combos[q][4]]
-			if not rb_wr_te_combos:
-				rb_wr_te_combos.insert(0, current_array)
-			else:
-				rb_wr_te_combos.append(current_array)
+			rb_wr_te_combos.append(current_array)
 			q += 1
 	print("Done 3 of 6.  The number of RB/WR/TE combos is " + str(len(rb_wr_te_combos)))
 
@@ -193,13 +151,10 @@ def set_qb_df_group():
 	for qb in quarter_backs:
 		for df in defenses:
 			group: Group = Group(qb.price + df.price, [qb, df])
-			if not qb_df_groups:
-				qb_df_groups.insert(0, group)
-			else:
-				qb_df_groups.append(group)
+			qb_df_groups.append(group)
 	print("Done 4 of 6.  The number of QB/DF combos is " + str(len(qb_df_groups)))
-			
-		
+
+
 
 def old_set_flex_group():
 	lcl_array = []
@@ -221,13 +176,10 @@ def old_set_flex_group():
 					pass
 				else:
 					group: Group = Group(price, current_array)
-					
-					if not flex_groups:
-						flex_groups.insert(0, group)
-					else:
-						flex_groups.append(group)
+
+					flex_groups.append(group)
 			q += 1
-	
+
 
 def set_flex_group():
         timestamp = datetime.now()
@@ -259,14 +211,11 @@ def set_flex_group():
                                                          flex_players[q]]
                                         group: Group = Group(price, current_array)
                                         count += 1
-                                        if not flex_groups:
-                                                flex_groups.insert(0, group)
-                                        else:
-                                                flex_groups.append(group)
+                                        flex_groups.append(group)
                         q += 1
                         if count % 1000000 == 0:
                                 print(str(len(flex_groups)) + ' flex groups have been created in ' + str((datetime.now() - timestamp).seconds) + ' seconds')
-       
+
         print('Done 5 of 6.\n' + str(len(flex_groups)) + ' valid flex groups were created\nof a possible ' + potential_flex_groups + ' flex groups in ' + str((datetime.now() - timestamp).seconds) + ' seconds')
 
 def create_rosters():
@@ -288,21 +237,18 @@ def create_rosters():
                                 count = len(sorted_flex)
                         elif price < budget - money_left_on_table:
                                 count += 1
-                        else:                   
-                                if not final_rosters:
-                                        final_rosters.insert(0, [qb_df, sorted_flex[count], money_on_table])
-                                else:
-                                        final_rosters.append([qb_df, sorted_flex[count], money_on_table])
+                        else:
+                                final_rosters.append([qb_df, sorted_flex[count], money_on_table])
                                 count += 1
-        
 
 
-	
+
+
 def write_rosters():
 	print("Through iterating " + str(iterations) + " times it has been determined there are " + str(len(final_rosters)) + " valid rosters")
 
 	count = 0
-	
+
 	with open(rosters_csv, 'w') as f:
 		the_writer = csv.writer(f)
 		the_writer.writerow(['QB', 'RB1', 'RB2', 'WR1', 'WR2', 'WR3', 'TE', 'DF', 'FX', '$ Unused'])
@@ -321,15 +267,12 @@ def write_rosters():
 			lcl_roster = [qb, rb1, rb2, wr1, wr2, wr3, te, df, fx, amt]
 			the_writer.writerow(lcl_roster)
 
-			if not lcl_roster_array:
-				lcl_roster_array.insert(0, lcl_roster)
-			else:
-				lcl_roster_array.append(lcl_roster)
+			lcl_roster_array.append(lcl_roster)
 			count += 1
 			if count % 100000 == 0:
 				print(str(count) + ' rosters created')
 
-	created_rosters = lcl_roster_array		
+	created_rosters = lcl_roster_array
 	print("Done 6 of 6.  " + str(len(created_rosters)) + " rosters were created in " + str((datetime.now() - start_time).seconds) + " seconds")
 
 
@@ -343,10 +286,7 @@ def read_rosters():
                 for line in csv_reader:
                         lcl_roster = [line[0], line[1], line[2], line[3], line[4], line[5], line[6], line[7], line[8], line[9]]
                         count += 1
-                        if not created_rosters:
-                                created_rosters.insert(0, lcl_roster)
-                        else:
-                                created_rosters.append(lcl_roster)
+                        created_rosters.append(lcl_roster)
                         if count % 100000 == 0:
                                 print(str(count) + " rosters have been read")
         print(str(len(created_rosters)) + " rosters have been read")
@@ -355,7 +295,7 @@ def user_filter():
         filtered_array = []
         filtered_rosters_array = []
         trigger = 'y'
-        
+
         while trigger == 'y':
                 filtered_array.append(str(input("Enter a player to filter? ")))
                 print("Players that must be in the roster: " + str(filtered_array))
@@ -389,10 +329,7 @@ def user_filter():
                                 lcl_roster = [qb, rb1, rb2, wr1, wr2, wr3, te, df, fx, amt]
                                 the_writer.writerow(lcl_roster)
 
-                                if not lcl_roster_array:
-                                        lcl_roster_array.insert(0, lcl_roster)
-                                else:
-                                        lcl_roster_array.append(lcl_roster)
+                                lcl_roster_array.append(lcl_roster)
                                 count += 1
                                 if count % 100000 == 0:
                                         print(str(count) + ' rosters created')
@@ -402,9 +339,9 @@ def user_filter():
         print(str(len(lcl_roster_array)) + " rosters have been created.")
 
                 #filtered_rosters = lcl_roster_array
-                                        
-                      
-        
+
+
+
 
 def run_main():
 	read_players()
@@ -418,11 +355,11 @@ def run_main():
 	set_flex_group()
 	create_rosters()
 	write_rosters()
-	
+
 def run_filter():
         read_rosters()
         user_filter()
-        
+
 
 start_program()
 
